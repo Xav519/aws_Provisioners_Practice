@@ -191,7 +191,7 @@ ssh -i ~/.ssh/your-key.pem ubuntu@<PUBLIC_IP>
 
 This is what you should be able to see:
 
-<img src="./testProvisioners.png" alt="testProvisionerImage" width="500"/>
+<img src="./testProvisioners.png" alt="testProvisionerImage" width="900"/>
 
 
 ------------------------------------------------------------------------
