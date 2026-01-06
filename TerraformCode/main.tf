@@ -51,21 +51,7 @@ resource "aws_instance" "demo" {
 
   /*
   ------------------------------------------------------------------
-  Provisioner 1: local-exec
-  - Runs on the machine where you run Terraform (your laptop/CI agent).
-  - Useful for local tasks, logging, calling local scripts, etc.
-  - To demo: uncomment this block, then run `terraform apply`.
-  ------------------------------------------------------------------
-  */
-
-  # provisioner "local-exec" {
-  #   command = "echo 'Local-exec: created instance ${self.id} with IP ${self.public_ip}'"
-  # }
-
-
-  /*
-  ------------------------------------------------------------------
-  Provisioner 2: remote-exec
+  Provisioner 1: remote-exec
   - Runs commands on the remote instance over SSH.
   - Requires SSH access (security group + key pair + reachable IP).
   - To demo: uncomment this block, ensure `var.private_key_path` is correct, then run `terraform apply`.
@@ -79,16 +65,15 @@ resource "aws_instance" "demo" {
     ]
   }
   
-
   /*
   ------------------------------------------------------------------
-  Provisioner 3: file + remote-exec
+  Provisioner 2: file + remote-exec
   - Copies a script (scripts/welcome.sh) to the instance, then executes it.
   - Good pattern for more complex bootstrapping when script files are preferred.
   - To demo: uncomment both the file provisioner and the remote-exec block below.
   ------------------------------------------------------------------
   */
-  /*
+  
   provisioner "file" {
     source      = "${path.module}/scripts/welcome.sh"
     destination = "/tmp/welcome.sh"
@@ -100,5 +85,5 @@ resource "aws_instance" "demo" {
       "sudo /tmp/welcome.sh"
     ]
   }
-  */
+  
 }
